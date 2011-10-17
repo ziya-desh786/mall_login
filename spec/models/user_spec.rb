@@ -4,10 +4,10 @@ describe User do
 
   before(:each) do
     @attr = {
-      :name => "Example User",
-      :email => "user@example.com",
-      :password => "foobar",
-      :password_confirmation => "foobar"
+      :name => "Ziya Deshmukh",
+      :email => "ziya.desh@dreamwares.com",
+      :password => "123456",
+      :password_confirmation => "123456"
     }
   end
   it "should create a new instance given valid attributes" do
@@ -57,6 +57,8 @@ it "should accept valid email addresses" do
     user_with_duplicate_email = User.new(@attr)
     user_with_duplicate_email.should_not be_valid
   end
+
+
 
   describe "password validations" do
 
@@ -124,5 +126,26 @@ it "should accept valid email addresses" do
       end 
     end
   end
+
+describe "admin attribute" do
+
+    before(:each) do
+      @user = User.create!(@attr)
+    end
+
+    it "should respond to admin" do
+      @user.should respond_to(:admin)
+    end
+
+    it "should not be an admin by default" do
+      @user.should_not be_admin
+    end
+
+    it "should be convertible to an admin" do
+      @user.toggle!(:admin)
+      @user.should be_admin
+    end
+  end
+
 end
 
