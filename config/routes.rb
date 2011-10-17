@@ -1,9 +1,9 @@
 MallLogin::Application.routes.draw do
-  get "sessions/new"
-
+  #get "sessions/new"
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
-  get "users/new"
+
+  #get "users/new"
   match '/signup',  :to => 'users#new'
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
